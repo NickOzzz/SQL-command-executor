@@ -1,0 +1,4 @@
+﻿  account.cpp
+C:\Users\ozzzi\Desktop\CPPSQL\CPPSQL\account.cpp(1,10): fatal  error C1083: Cannot open include file: 'mysql_connection.h': No such file or directory
+  main.cpp
+C:\Users\ozzzi\Desktop\CPPSQL\CPPSQL\account.h(2,10): fatal  error C1083: Cannot open include file: 'mysql_connection.h': No such file or directory
