@@ -8,14 +8,16 @@ using namespace std;
 class Command
 {
 private:
-    string command, database;
+    Statement* connection;
+    int columnReadLimit;
 
 public:
-    Command(string command, string database);
-    void Init();
+    Command(int columnReadLimit);
+    ˜Command();
+    void Init(string command);
     
 private:
-    sql::Statement* SetupConnection();
+    void SetupConnection(string database);
     UserConfig* GetConfig();
     string GetCurrentDirectory();
     void Fallback(sql::SQLException);

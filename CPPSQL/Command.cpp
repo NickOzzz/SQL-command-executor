@@ -12,26 +12,29 @@
 
 using namespace std;
 
-Command::Command(string command, string database) : command(command), database(database) { }
+Command::Command(int columnReadLimit) : columnReadLimit(columnReadLimit) {}
 
-void Command::Init()
+Command::˜Command()
 {
-    int rowLimit = 10000;
+    delete this->connection;
+}
+
+void Command::Init(string command)
+{
     try
     {
-        auto statement = SetupConnection();
-        auto result = statement->executeQuery(command);
+        auto result = this->connection->executeQuery(command);
 
         Logger::LogInformation("---------------------------- executing query");
         while (result->next())
         {
             Logger::LogInformation("------------- row start");
-            for (int index = 1; index < rowLimit; index++)
+            for (int index = 1; index <= columnReadLimit; index++)
             {
                 try
                 {
                     auto fullResult = result->getString(index);
-                    cout << fullResult << endl;
+                    Logger::LogInformation(fullResult);
                     Logger::LogInformation("------");
                 }
                 catch(...)
@@ -50,7 +53,7 @@ void Command::Init()
     }
 }
 
-sql::Statement* Command::SetupConnection()
+void Command::SetupConnection(string database)
 {
     sql::Driver* driver = get_driver_instance();
 
@@ -58,10 +61,12 @@ sql::Statement* Command::SetupConnection()
 
     sql::Connection* connection = driver->connect(config->GetUrl().asCString(), config->GetUsername().asCString(), config->GetPassword().asCString());
 
+    delete config;
+
     connection->setSchema(database);
     auto statement = connection->createStatement();
 
-    return statement;
+    this->connection = statement;
 }
 
 void Command::Fallback(sql::SQLException ex)
@@ -69,10 +74,10 @@ void Command::Fallback(sql::SQLException ex)
     auto errorCode = ex.getErrorCode();
     if (errorCode != 0)
     {
-        Logger::LogInformation("error occured");
+        Logger::LogError("error occured");
 
-        cout << errorCode << endl;
-        cout << ex.getSQLState() << endl;
+        Logger::LogError(errorCode);
+        Logger::LogError(ex.getSQLState());
     }
     else
     {
@@ -90,12 +95,15 @@ UserConfig* Command::GetConfig()
 
     if (!file.is_open())
     {
-        cout << "failed to open appsettings.json file" << endl;
+        Logger::LogError("failed to open appsettings.json file");
     }
 
     file >> read_file;
 
     auto config = new UserConfig(read_file["url"], read_file["username"], read_file["password"]);
+
+    delete file;
+    delete read_file;
 
     return config;
 }
@@ -106,7 +114,7 @@ string Command::GetCurrentDirectory()
     char buffer[size];
 
     if (_getcwd(buffer, size) == NULL) {
-        cerr << "Error reading directory for search of appsettings.json" << endl;
+        Logger::LogError("Error reading directory for search of appsettings.json");
     }
     return buffer;
 }
