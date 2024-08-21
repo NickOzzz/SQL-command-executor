@@ -1,21 +1,4 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Microsoft\VC\v170\Microsoft.CppClean.targets(77,5): warning : Access to the path 'c:\users\ozzzi\desktop\cppsql\x64\debug\cppsql.exe' is denied.
-  Command.cpp
-C:\Users\ozzzi\Desktop\CPPSQL\CPPSQL\Logger.cpp(9,2): warning C4091: 'static ': ignored on left of 'Logger' when no variable is declared
-  CommandProcessor.cpp
-C:\Users\ozzzi\Desktop\CPPSQL\CPPSQL\Logger.cpp(9,2): warning C4091: 'static ': ignored on left of 'Logger' when no variable is declared
-C:\Users\ozzzi\Desktop\CPPSQL\CPPSQL\Helpers.cpp(35,2): warning C4091: 'static ': ignored on left of 'helpers' when no variable is declared
-C:\Users\ozzzi\Desktop\CPPSQL\CPPSQL\CommandProcessor.cpp(22,2): warning C4091: 'static ': ignored on left of 'CommandProcessor' when no variable is declared
-  Logger.cpp
-C:\Users\ozzzi\Desktop\CPPSQL\CPPSQL\Logger.cpp(9,2): warning C4091: 'static ': ignored on left of 'Logger' when no variable is declared
-  Helpers.cpp
-C:\Users\ozzzi\Desktop\CPPSQL\CPPSQL\Logger.cpp(9,2): warning C4091: 'static ': ignored on left of 'Logger' when no variable is declared
-C:\Users\ozzzi\Desktop\CPPSQL\CPPSQL\Helpers.cpp(35,2): warning C4091: 'static ': ignored on left of 'helpers' when no variable is declared
-  Main.cpp
-C:\Users\ozzzi\Desktop\CPPSQL\CPPSQL\Logger.cpp(9,2): warning C4091: 'static ': ignored on left of 'Logger' when no variable is declared
-C:\Users\ozzzi\Desktop\CPPSQL\CPPSQL\Helpers.cpp(35,2): warning C4091: 'static ': ignored on left of 'helpers' when no variable is declared
-C:\Users\ozzzi\Desktop\CPPSQL\CPPSQL\CommandProcessor.cpp(22,2): warning C4091: 'static ': ignored on left of 'CommandProcessor' when no variable is declared
-  UserConfig.cpp
-  Generating Code...
+﻿  LINK : C:\Users\ozzzi\Desktop\CPPSQL\x64\Debug\CPPSQL.exe not found or not built by the last incremental link; performing full link
 mysqlcppconn-static.lib(mysql_driver.obj) : warning LNK4099: PDB '' was not found with 'mysqlcppconn-static.lib(mysql_driver.obj)' or at ''; linking object as if no debug info
 mysqlcppconn-static.lib(mysql_connection.obj) : warning LNK4099: PDB '' was not found with 'mysqlcppconn-static.lib(mysql_connection.obj)' or at ''; linking object as if no debug info
 mysqlcppconn-static.lib(mysql_native_driver_wrapper.obj) : warning LNK4099: PDB '' was not found with 'mysqlcppconn-static.lib(mysql_native_driver_wrapper.obj)' or at ''; linking object as if no debug info
