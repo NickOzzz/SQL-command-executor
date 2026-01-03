@@ -97,6 +97,19 @@ public:
             );
     }
 
+    static string Replace(string item, string from, string to) {
+        string result = item;
+        size_t startPosition = 0;
+
+        while ((startPosition = result.find(from, startPosition)) != string::npos) 
+        {
+            result.replace(startPosition, from.length(), to);
+            startPosition += to.length();
+        }
+
+        return result;
+    }
+
     static string RemoveWhiteSpaces(string item) 
     {
         item.erase(remove(item.begin(), item.end(), ' '), item.end());

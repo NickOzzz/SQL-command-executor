@@ -20,6 +20,6 @@ public:
 
 private:
     UserConfig* GetConfig();
-    string GetCurrentDirectory();
+    string GetExecutableDirectory();
     void Fallback(sql::SQLException);
 };

@@ -10,6 +10,9 @@
 #include "Logger.cpp"
 #include <direct.h>  
 #include "ConnectionDetails.h"
+#include <string>
+#include <windows.h>
+#include "Helpers.cpp"
 
 using namespace std;
 
@@ -113,9 +116,10 @@ UserConfig* Command::GetConfig()
 {
     Json::Value read_file;
 
-    auto directory = GetCurrentDirectory();
+    auto directory = GetExecutableDirectory();
+    directory = Helpers::Replace(directory, "CPPSQL.exe", "");
 
-    ifstream file(directory + "/appsettings.json");
+    ifstream file(directory + "\\appsettings.json");
 
     if (!file.is_open())
     {
@@ -129,14 +133,20 @@ UserConfig* Command::GetConfig()
     return config;
 }
 
-string Command::GetCurrentDirectory()
+string Command::GetExecutableDirectory()
 {
-    const size_t size = 1024;
-    char buffer[size];
+    vector<wchar_t> pathBuffer;
+    DWORD copiedPathLength = 0;
 
-    if (_getcwd(buffer, size) == NULL) {
-        Logger::LogError("Error reading directory for search of appsettings.json");
-    }
-    return buffer;
+    do
+    {
+        //MAX_PATH is 260
+        pathBuffer.resize(pathBuffer.size() + MAX_PATH);
+        copiedPathLength = GetModuleFileName(0, &pathBuffer.at(0), pathBuffer.size());
+    } while (copiedPathLength >= pathBuffer.size());
+
+    pathBuffer.resize(copiedPathLength);
+
+    return string(pathBuffer.begin(), pathBuffer.end());
 }
 
