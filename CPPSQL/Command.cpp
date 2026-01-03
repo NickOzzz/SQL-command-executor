@@ -38,8 +38,13 @@ void Command::Init(string command)
                 try
                 {
                     auto fullResult = result->getString(index);
+
+                    if (index != 1)
+                    {
+                        Logger::LogInformation("------");
+                    }
+
                     Logger::LogInformation(fullResult);
-                    Logger::LogInformation("------");
                 }
                 catch(...)
                 {
