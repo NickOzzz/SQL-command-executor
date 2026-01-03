@@ -1,1 +1,12 @@
 .vs
+.exp
+.lib
+.pdb
+.dll
+.tlog
+.lastbuildstate
+.obj
+.recipe
+.ilk
+.idb
+.exe
