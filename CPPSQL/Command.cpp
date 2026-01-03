@@ -125,7 +125,7 @@ UserConfig* Command::GetConfig()
 
     if (!file.is_open())
     {
-        Logger::LogError("failed to open " + directoryPath + " file");
+        Logger::LogError("failed to open '" + directoryPath + "' file");
     }
 
     file >> read_file;
