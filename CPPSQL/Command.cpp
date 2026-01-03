@@ -118,12 +118,14 @@ UserConfig* Command::GetConfig()
 
     auto directory = GetExecutableDirectory();
     directory = Helpers::Replace(directory, "CPPSQL.exe", "");
+    directory = Helpers::Replace(directory, "cppsql.exe", "");
 
-    ifstream file(directory + "\\appsettings.json");
+    string directoryPath = directory + "\\appsettings.json";
+    ifstream file(directoryPath);
 
     if (!file.is_open())
     {
-        Logger::LogError("failed to open appsettings.json file");
+        Logger::LogError("failed to open " + directoryPath + " file");
     }
 
     file >> read_file;
