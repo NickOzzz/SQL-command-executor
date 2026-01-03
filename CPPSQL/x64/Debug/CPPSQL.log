@@ -1,4 +1,35 @@
-﻿  LINK : C:\Users\ozzzi\Desktop\CPPSQL\x64\Debug\CPPSQL.exe not found or not built by the last incremental link; performing full link
+﻿  Command.cpp
+C:\Users\ozzzi\Desktop\CPPSQL\CPPSQL\Logger.cpp(6,14): warning C4091: 'static ': ignored on left of 'Logger' when no variable is declared
+  (compiling source file 'Command.cpp')
+  
+  CommandProcessor.cpp
+C:\Users\ozzzi\Desktop\CPPSQL\CPPSQL\Logger.cpp(6,14): warning C4091: 'static ': ignored on left of 'Logger' when no variable is declared
+  (compiling source file 'CommandProcessor.cpp')
+  
+C:\Users\ozzzi\Desktop\CPPSQL\CPPSQL\Helpers.cpp(9,14): warning C4091: 'static ': ignored on left of 'Helpers' when no variable is declared
+  (compiling source file 'CommandProcessor.cpp')
+  
+C:\Users\ozzzi\Desktop\CPPSQL\CPPSQL\CommandProcessor.cpp(9,14): warning C4091: 'static ': ignored on left of 'CommandProcessor' when no variable is declared
+  Logger.cpp
+C:\Users\ozzzi\Desktop\CPPSQL\CPPSQL\Logger.cpp(6,14): warning C4091: 'static ': ignored on left of 'Logger' when no variable is declared
+  Helpers.cpp
+C:\Users\ozzzi\Desktop\CPPSQL\CPPSQL\Logger.cpp(6,14): warning C4091: 'static ': ignored on left of 'Logger' when no variable is declared
+  (compiling source file 'Helpers.cpp')
+  
+C:\Users\ozzzi\Desktop\CPPSQL\CPPSQL\Helpers.cpp(9,14): warning C4091: 'static ': ignored on left of 'Helpers' when no variable is declared
+  Main.cpp
+C:\Users\ozzzi\Desktop\CPPSQL\CPPSQL\Logger.cpp(6,14): warning C4091: 'static ': ignored on left of 'Logger' when no variable is declared
+  (compiling source file 'Main.cpp')
+  
+C:\Users\ozzzi\Desktop\CPPSQL\CPPSQL\Helpers.cpp(9,14): warning C4091: 'static ': ignored on left of 'Helpers' when no variable is declared
+  (compiling source file 'Main.cpp')
+  
+C:\Users\ozzzi\Desktop\CPPSQL\CPPSQL\CommandProcessor.cpp(9,14): warning C4091: 'static ': ignored on left of 'CommandProcessor' when no variable is declared
+  (compiling source file 'Main.cpp')
+  
+  UserConfig.cpp
+  ConnectionDetails.cpp
+  Generating Code...
 mysqlcppconn-static.lib(mysql_driver.obj) : warning LNK4099: PDB '' was not found with 'mysqlcppconn-static.lib(mysql_driver.obj)' or at ''; linking object as if no debug info
 mysqlcppconn-static.lib(mysql_connection.obj) : warning LNK4099: PDB '' was not found with 'mysqlcppconn-static.lib(mysql_connection.obj)' or at ''; linking object as if no debug info
 mysqlcppconn-static.lib(mysql_native_driver_wrapper.obj) : warning LNK4099: PDB '' was not found with 'mysqlcppconn-static.lib(mysql_native_driver_wrapper.obj)' or at ''; linking object as if no debug info

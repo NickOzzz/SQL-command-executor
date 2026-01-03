@@ -2,38 +2,77 @@
 #include "Command.h"
 #include "Helpers.cpp"
 #include "Logger.cpp"
+#include "ConnectionDetails.h"
+
+using namespace std;
 
 static class CommandProcessor
 {
 private:
-    static const int commandReadLimit = 10000;
+    static const int CommandReadLimit = 10000;
 
 public:
-    static void initCommand()
+    static void InitCommand()
     {
-        string database = helpers::PromptDatabase();
-        if (helpers::ValidateInput(database))
+        string useConfig = Helpers::PromptConfigurationUsage();
+        useConfig = Helpers::RemoveWhiteSpaces(useConfig);
+
+        string url = "";
+        string username = "";
+        string password = "";
+
+        if (useConfig != "y" && useConfig != "Y")
         {
-            auto account = shared_ptr<Command>(new Command(commandReadLimit));
-            account->SetupConnection(database);
-            promptAndInitCommand(account);
+            url = Helpers::PromptUrl();
+            username = Helpers::PromptUsername();
+            password = Helpers::PromptPassword();
         }
-        else
+
+        string database = Helpers::PromptDatabase();
+
+        auto connectionDetails = shared_ptr<ConnectionDetails>(new ConnectionDetails(useConfig, url, username, password, database));
+
+        if (!Helpers::ValidateConnectionDetails(connectionDetails.get()))
         {
-            Logger::LogInformation("Could not connect to the database -> " + database)
+            Logger::LogError("Connection details have to be provided when default configuration is not used");
+            return;
+        }
+
+        if (!Helpers::ValidateInput(database)) 
+        {
+            Logger::LogError("Database name has to be provided");
+            return;
+        }
+
+        auto account = shared_ptr<Command>(new Command(CommandReadLimit));
+
+        auto success = account->SetupConnection(connectionDetails.get());
+        
+        if (success) 
+        {
+            PromptAndInitCommand(account.get());
         }
     }
 
 private:
-    void promptAndInitCommand(Command& account)
+    static void PromptAndInitCommand(Command* account)
     {
         while (true)
         {
-            string command = helpers::PromptCommand();
+            string command = Helpers::PromptCommand();
 
-            if (helpers::ValidateInput(command))
+            if (command == "/quit") 
+            {
+                return;
+            }
+
+            if (Helpers::ValidateInput(command))
             {
                 account->Init(command);
+            }
+            else 
+            {
+                Logger::LogError("Command cannot be empty");
             }
         }
     }

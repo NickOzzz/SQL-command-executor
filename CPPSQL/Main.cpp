@@ -1,11 +1,13 @@
 #include <iostream>
 #include "CommandProcessor.cpp"
+#include "Helpers.cpp"
 
 
 using namespace std;
 
 int main()
 {
-    CommandProcessor::initCommand();
+    Helpers::DisplayWelcomeMessage();
+    CommandProcessor::InitCommand();
     return 0;
 }

@@ -107,6 +107,8 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Program Files\MySQL\Connector C++ 8.0\include\jdbc;C:\Program Files (x86)\gtkmm\include\gtkmm-2.4;C:\Program Files (x86)\gtkmm\include\atk-1.0;C:\Program Files (x86)\gtkmm\include\atkmm-1.6;C:\Program Files (x86)\gtkmm\include\cairo;C:\Program Files (x86)\gtkmm\include\cairomm-1.0;C:\Program Files (x86)\gtkmm\include\gdkmm-2.4;C:\Program Files (x86)\gtkmm\include\glib-2.0;C:\Program Files (x86)\gtkmm\include\glibmm-2.4;C:\Program Files (x86)\gtkmm\include\gtk-2.0;C:\Program Files (x86)\gtkmm\include\libglade-2.0;C:\Program Files (x86)\gtkmm\include\libglademm-2.4;C:\Program Files (x86)\gtkmm\include\libxml;C:\Program Files (x86)\gtkmm\include\libxml++-2.6;C:\Program Files (x86)\gtkmm\include\libxml2;C:\Program Files (x86)\gtkmm\include\pango-1.0;C:\Program Files (x86)\gtkmm\include\pangomm-1.4;C:\Program Files (x86)\gtkmm\include\sigc++-2.0;C:\Program Files (x86)\gtkmm\include;C:\Program Files (x86)\gtkmm\lib\gdkmm-2.4\include;C:\Program Files (x86)\gtkmm\lib\glib-2.0\include;C:\Program Files (x86)\gtkmm\lib\glibmm-2.4\include;C:\Program Files (x86)\gtkmm\lib\gtk-2.0\include;C:\Program Files (x86)\gtkmm\lib\gtkmm-2.4\include;C:\Program Files (x86)\gtkmm\lib\libglademm-2.4\include;C:\Program Files (x86)\gtkmm\lib\libxml++-2.6\include;C:\Program Files (x86)\gtkmm\lib\sigc++-2.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <LanguageStandard>Default</LanguageStandard>
+      <LanguageStandard_C>Default</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -134,6 +136,7 @@
   <ItemGroup>
     <ClInclude Include="Command.h" />
     <ClInclude Include="UserConfig.h" />
+    <ClInclude Include="ConnectionDetails.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Command.cpp" />
@@ -142,6 +145,7 @@
     <ClCompile Include="Helpers.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="UserConfig.cpp" />
+    <ClCompile Include="ConnectionDetails.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

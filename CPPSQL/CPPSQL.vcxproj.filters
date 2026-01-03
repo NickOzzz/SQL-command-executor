@@ -21,6 +21,9 @@
     <ClInclude Include="UserConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClCompile Include="ConnectionDetails.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Command.cpp">
@@ -39,6 +42,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UserConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectionDetails.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -9,12 +9,13 @@
 #include "UserConfig.h"
 #include "Logger.cpp"
 #include <direct.h>  
+#include "ConnectionDetails.h"
 
 using namespace std;
 
 Command::Command(int columnReadLimit) : columnReadLimit(columnReadLimit) {}
 
-Command::˜Command()
+Command::~Command()
 {
     delete this->connection;
 }
@@ -53,20 +54,43 @@ void Command::Init(string command)
     }
 }
 
-void Command::SetupConnection(string database)
+bool Command::SetupConnection(ConnectionDetails* connectionDetails)
 {
-    sql::Driver* driver = get_driver_instance();
+    string useConfig = connectionDetails->GetUseConfig();
+    string url = connectionDetails->GetUrl();
+    string username = connectionDetails->GetUsername();
+    string password = connectionDetails->GetPassword();
+    string database = connectionDetails->GetDatabase();
 
     UserConfig* config = GetConfig();
 
-    sql::Connection* connection = driver->connect(config->GetUrl().asCString(), config->GetUsername().asCString(), config->GetPassword().asCString());
+    if (useConfig == "y" || useConfig == "Y")
+    {
+        url = config->GetUrl();
+        username = config->GetUsername();
+        password = config->GetPassword();
+    }
 
-    delete config;
+    sql::Statement* statement;
+    try 
+    {
+        sql::Driver* driver = get_driver_instance();
+        sql::Connection* connection = driver->connect(url, username, password);
 
-    connection->setSchema(database);
-    auto statement = connection->createStatement();
+        connection->setSchema(database);
+        statement = connection->createStatement();
+
+        delete config;
+    }
+    catch (...) 
+    {
+        Logger::LogError("Could not connect to the server or database");
+        delete config;
+        return false;
+    }
 
     this->connection = statement;
+    return true;
 }
 
 void Command::Fallback(sql::SQLException ex)
@@ -76,7 +100,7 @@ void Command::Fallback(sql::SQLException ex)
     {
         Logger::LogError("error occured");
 
-        Logger::LogError(errorCode);
+        Logger::LogError(std::to_string(errorCode));
         Logger::LogError(ex.getSQLState());
     }
     else
@@ -101,9 +125,6 @@ UserConfig* Command::GetConfig()
     file >> read_file;
 
     auto config = new UserConfig(read_file["url"], read_file["username"], read_file["password"]);
-
-    delete file;
-    delete read_file;
 
     return config;
 }

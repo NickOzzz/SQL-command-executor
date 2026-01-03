@@ -1,5 +1,8 @@
 #pragma once
 #include "json/json.h"
+#include <string>
+
+using namespace std;
 
 class UserConfig
 {
@@ -8,7 +11,7 @@ private:
 
 public:
 	UserConfig(Json::Value url, Json::Value username, Json::Value password);
-	Json::Value GetUrl();
-	Json::Value GetUsername();
-	Json::Value GetPassword();
+	string GetUrl();
+	string GetUsername();
+	string GetPassword();
 };
