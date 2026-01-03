@@ -10,3 +10,5 @@
 *.ilk
 *.idb
 *.exe
+*.log
+*.FileListAbsolute.txt
